@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+venv/
+config/data/db/
+config/data/bm25_cache.pkl/
+config/config/index_cache/
+*.pdf
+*.log
+.env
+.DS_Store
+Thumbs.db
