@@ -394,6 +394,5 @@ def launch_webui():
         inbrowser=True,
         prevent_thread_lock=False
     )
-
 if __name__ == "__main__":
     launch_webui()

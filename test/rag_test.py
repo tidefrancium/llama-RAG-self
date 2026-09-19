@@ -1,8 +1,3 @@
-# Windows 异步兼容修复（必须放文件最顶部）
-import asyncio
-if __name__ == "__main__":
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-
 import sys
 from pathlib import Path
 
@@ -89,8 +84,6 @@ def eval_rag_output(question: str, answer: str, contexts: list):
         base_url=OLLAMA_BASE_URL,
         temperature=0
     )
-
-    # 关键：async_mode=False 强制串行同步执行，消除Windows异步连接死锁
     gen_metrics = [
         AnswerRelevancyMetric(model=judge_llm, threshold=SCORE_THRESHOLD, async_mode=False),
         FaithfulnessMetric(model=judge_llm, threshold=SCORE_THRESHOLD, async_mode=False)
