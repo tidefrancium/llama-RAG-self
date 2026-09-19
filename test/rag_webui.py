@@ -19,15 +19,11 @@ APP_STATE = {
     "all_nodes": None,          # 全部分块节点
     "processed_files": set()    # 已入库文件路径集合
 }
-# ==========================================================================================
 
-# 持久化已入库文件记录路径，用于启动自动加载
 RECORD_PATH = ROOT_DIR / "config" / "processed_files_record.pkl"
 DUMP_LOG_PATH = ROOT_DIR / "rag_doc_dump.log"
-# LlamaIndex元缓存目录（统一硬编码，消除get_index_cache_dir导入依赖）
 INDEX_CACHE_DIR = ROOT_DIR / "index_cache"
 
-# ===================== 蓝‑紫‑深蓝分层CSS 自适应网页 =====================
 CUSTOM_CSS = """
 /* 全局：自适应，最大宽度限制，小屏幕自动收缩 */
 .gradio-container {

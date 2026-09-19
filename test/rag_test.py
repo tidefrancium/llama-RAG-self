@@ -21,7 +21,6 @@ from deepeval.metrics import (
     ContextualRecallMetric
 )
 
-# ===================== 全局配置 =====================
 # RAG 向量库路径
 INDEX_CACHE_DIR = ROOT_DIR / "index_cache"
 db_folder = ROOT_DIR / "config" / "data" / "db"
@@ -41,7 +40,6 @@ APP_STATE = {
     "all_nodes": None
 }
 
-# ===================== RAG 生产核心函数（零修改） =====================
 def auto_load_rag():
     if chroma_db_file.exists():
         APP_STATE["vec_index"] = load_exist_vector_index()
@@ -121,19 +119,19 @@ def eval_rag_output(question: str, answer: str, contexts: list):
 # ===================== 主入口 =====================
 if __name__ == "__main__":
     if not auto_load_rag():
-        print("⚠️ 未检测到本地向量库，启动全量构建...")
+        print("未检测到本地向量库，启动全量构建...")
         if not build_rag():
-            print("❌ 知识库构建失败，文档目录无有效文件")
+            print("知识库构建失败，文档目录无有效文件")
             sys.exit(1)
-        print("✅ RAG知识库构建完成")
+        print("RAG知识库构建完成")
     else:
-        print("✅ RAG知识库加载完成")
+        print("RAG知识库加载完成")
 
     answer, contexts = rag_infer(EVAL_QUERY)
     if not answer:
-        print("❌ RAG推理失败，知识库未初始化")
+        print("RAG推理失败，知识库未初始化")
         sys.exit(1)
 
     eval_rag_output(EVAL_QUERY, answer, contexts)
     print("\n" + "=" * 65)
-    print("🎉 全链路评测完成")
+    print("全链路评测完成")
